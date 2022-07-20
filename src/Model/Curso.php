@@ -2,6 +2,9 @@
 
 namespace Alura\Solid\Model;
 
+use DomainException;
+use Alura\Solid\Model\Feedback;
+
 class Curso
 {
     private $nome;
@@ -15,19 +18,15 @@ class Curso
         $this->feedbacks = [];
     }
 
-    public function receberFeedback(int $nota, ?string $depoimento): void
+    public function receberFeedback(Feedback $feedback): void
     {
-        if ($nota < 9 && empty($depoimento)) {
-            throw new \DomainException('Depoimento obrigatório');
-        }
-
-        $this->feedbacks[] = [$nota, $depoimento];
+        $this->feedbacks[] = $feedback;
     }
 
     public function adicionarVideo(Video $video)
     {
         if ($video->minutosDeDuracao() < 3) {
-            throw new \DomainException('Video muito curto');
+            throw new DomainException('Video muito curto');
         }
 
         $this->videos[] = $video;

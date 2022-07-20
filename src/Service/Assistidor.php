@@ -18,4 +18,4 @@ class Assistidor
     {
         $aluraMais->assistir();
     }
-}
+} 

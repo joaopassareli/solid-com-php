@@ -5,7 +5,7 @@ namespace Alura\Solid\Model;
 use DomainException;
 use Alura\Solid\Model\Feedback;
 
-class Curso
+class Curso implements Pontuavel
 {
     private $nome;
     private $videos;
@@ -36,5 +36,17 @@ class Curso
     public function recuperarVideos(): array
     {
         return $this->videos;
+    }
+
+    public function recuperarPontuacao(): int
+    {
+        return 100;
+    }
+
+    public function assistir(): void
+    {
+        foreach ($this->recuperarVideos() as $video){
+            $video->assistir();
+        }
     }
 }
